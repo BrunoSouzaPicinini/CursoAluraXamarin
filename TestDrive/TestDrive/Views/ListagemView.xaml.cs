@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace TestDrive
+namespace TestDrive.Views
 {
     public class Veiculo
     {
@@ -11,11 +11,11 @@ namespace TestDrive
         public string PrecoFormatado => $"R$ {Preco}";
     }
 
-    public partial class MainPage : ContentPage
+    public partial class ListagemView : ContentPage
     {
         public List<Veiculo> Veiculos { get; set; }
 
-        public MainPage()
+        public ListagemView()
         {
             InitializeComponent();
 
@@ -29,13 +29,11 @@ namespace TestDrive
             BindingContext = this;
         }
 
-        private void listViewVeiculos_OnItemTapped(object sender, ItemTappedEventArgs e)
+        private void ListViewVeiculos_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var veiculo = e.Item as Veiculo;
 
-            DisplayAlert("Test Drive",
-                $"Você tocou no modelo {veiculo?.Nome}, que custa {veiculo?.PrecoFormatado} ",
-                "OK");
+            Navigation.PushAsync(new DetalheView(veiculo));
         }
     }
 }

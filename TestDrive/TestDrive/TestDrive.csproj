@@ -10,6 +10,33 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583"/>
+        <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="View\ListagemView.xaml">
+        <SubType>Designer</SubType>
+        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Views\DetalheView.xaml">
+        <SubType>Designer</SubType>
+        <Generator></Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Views\AgendamentoView.xaml">
+        <SubType>Designer</SubType>
+        <Generator></Generator>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="View\ListagemView.xaml.cs">
+        <DependentUpon>ListagemView.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\DetalheView.xaml.cs">
+        <DependentUpon>DetalheView.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\AgendamentoView.xaml.cs">
+        <DependentUpon>AgendamentoView.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 </Project>
