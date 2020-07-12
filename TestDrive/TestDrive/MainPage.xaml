@@ -4,11 +4,21 @@
              xmlns:local="clr-namespace:TestDrive"
              x:Class="TestDrive.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <ListView x:Name="ListViewVeiculos" ItemsSource="{Binding Veiculos}" Margin="25"
+              ItemTapped="listViewVeiculos_OnItemTapped">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Nome}" FontSize="20" VerticalTextAlignment="Center"/>
+                            <Label Text=" - " VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding PrecoFormatado}" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
 </ContentPage>
