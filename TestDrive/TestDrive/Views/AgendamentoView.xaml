@@ -6,10 +6,29 @@
              Title="{Binding Veiculo.Nome}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-            
+            <TableView>
+                <TableSection Title="Seus Dados">
+                    <EntryCell Label="Nome:" Text="{Binding Nome}" />
+                    <EntryCell Label="Fone:" Keyboard="Telephone" Text="{Binding Fone}" />
+                    <EntryCell Label="Email:" Keyboard="Email" Text="{Binding Email}" />
+                </TableSection>
+                <TableSection Title="Agendamento">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
+                            <Label Text="Data:" ></Label>
+                            <DatePicker Date="{Binding DataAgendamento}"></DatePicker>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="12,0,0,0">
+                            <Label Text="Hora:"></Label>
+                            <TimePicker Time="{Binding HoraAgendamento}"></TimePicker>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableView>
+            <Button Text="Agendar" Clicked="Button_OnClicked"></Button>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
