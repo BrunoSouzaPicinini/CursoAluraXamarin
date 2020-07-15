@@ -1,4 +1,5 @@
 ﻿using System;
+using TestDrive.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,50 +9,40 @@ namespace TestDrive.Views
     public partial class DetalheView : ContentPage
     {
         public Veiculo Veiculo { get; set; }
-        private const int FREIO_ABS = 800;
-        private const int AR_CONDICIONADO = 1000;
-        private const int MP3_PLAYER = 500;
 
-        public string TextoFreioAbs => $"Freio ABS - R$ {FREIO_ABS}";
-        public string TextoArCondicionado => $"Ar Condicionado - R$ {AR_CONDICIONADO}";
-        public string TextoMp3Player => $"MP3 Player - R$ {MP3_PLAYER}";
-
-        public string ValorTotal =>
-            $"Valor Total: R${Veiculo.Preco + (_temFreioAbs ? FREIO_ABS : 0) + (_temArCondicionado ? AR_CONDICIONADO : 0) + (_temMp3Player ? MP3_PLAYER : 0)}";
-
-        private bool _temFreioAbs;
+        public string TextoFreioAbs => $"Freio ABS - R$ {Veiculo.FREIO_ABS}";
+        public string TextoArCondicionado => $"Ar Condicionado - R$ {Veiculo.AR_CONDICIONADO}";
+        public string TextoMp3Player => $"MP3 Player - R$ {Veiculo.MP3_PLAYER}";
+        public string ValorTotal => Veiculo.PrecoTotalFormatado;
 
         public bool TemFreioAbs
         {
-            get { return _temFreioAbs; }
+            get { return Veiculo.TemFreioAbs; }
             set
             {
-                _temFreioAbs = value;
+                Veiculo.TemFreioAbs = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
             }
         }
-
-        private bool _temArCondicionado;
 
         public bool TemArCondicionado
         {
-            get { return _temArCondicionado; }
+            get { return Veiculo.TemArCondicionado; }
             set
             {
-                _temArCondicionado = value;
+                Veiculo.TemArCondicionado = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
             }
         }
 
-        private bool _temMp3Player;
         public bool TemMp3Player
         {
-            get { return _temMp3Player; }
+            get { return Veiculo.TemMP3Player; }
             set
             {
-                _temMp3Player = value;
+                Veiculo.TemMP3Player = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
             }
