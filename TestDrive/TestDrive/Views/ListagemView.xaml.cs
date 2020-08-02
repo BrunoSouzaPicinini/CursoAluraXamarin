@@ -12,11 +12,19 @@ namespace TestDrive.Views
             InitializeComponent();
         }
 
-        private void ListViewVeiculos_OnItemTapped(object sender, ItemTappedEventArgs e)
+        protected override void OnAppearing()
         {
-            var veiculo = e.Item as Veiculo;
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Veiculo>(this, "VeiculoSelecionado", msg =>
+            {
+                Navigation.PushAsync(new DetalheView(msg));
+            });
+        }
 
-            Navigation.PushAsync(new DetalheView(veiculo));
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Veiculo>(this, "VeiculoSelecionado");
         }
     }
 }

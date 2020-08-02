@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using TestDrive.Models;
+using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
@@ -12,6 +14,8 @@ namespace TestDrive.ViewModels
         public string TextoArCondicionado => $"Ar Condicionado - R$ {Veiculo.AR_CONDICIONADO}";
         public string TextoMp3Player => $"MP3 Player - R$ {Veiculo.MP3_PLAYER}";
         public string ValorTotal => Veiculo.PrecoTotalFormatado;
+
+        public ICommand ProximoCommand { get; set; }
 
         public bool TemFreioAbs
         {
@@ -51,6 +55,10 @@ namespace TestDrive.ViewModels
         public DetalheViewModel(Veiculo veiculo)
         {
             Veiculo = veiculo;
+            ProximoCommand = new Command(() =>
+            {
+                MessagingCenter.Send(veiculo, "Proximo");
+            });
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -23,9 +23,12 @@ namespace TestDrive.Views
             BindingContext = ViewModel;
         }
 
-        private void Button_OnClicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            DisplayAlert("Agendamento",
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", (msg) =>
+            {
+                DisplayAlert("Agendamento",
                 $@"
 Veiculo: {ViewModel.Agendamento.Veiculo.Nome}
 Nome: {ViewModel.Agendamento.Nome}
@@ -33,7 +36,14 @@ Fone: {ViewModel.Agendamento.Fone}
 E-mail: {ViewModel.Agendamento.Email}
 Data Agendamento: {ViewModel.Agendamento.DataAgendamento:dd/MM/yyyy}
 Hora Agendamento: {ViewModel.Agendamento.HoraAgendamento}"
-                , "Ok");
+                , "Ok");    
+            });
+        }
+        
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");
         }
     }
 }
