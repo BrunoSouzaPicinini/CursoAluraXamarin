@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestDrive.Models;
+using TestDrive.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,34 +13,26 @@ namespace TestDrive.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AgendamentoView : ContentPage
     {
-        public Agendamento Agendamento { get; set; }
+        public AgendamentoViewModel ViewModel { get; set; }
         
-        public Veiculo Veiculo { get { return Agendamento.Veiculo;} set { Agendamento.Veiculo = value; } }
-        public string Nome { get{return Agendamento.Nome;} set{Agendamento.Nome = value;} }
-        public string Fone { get{return Agendamento.Fone;} set{Agendamento.Fone = value;} }
-        public string Email { get{return Agendamento.Email;} set{Agendamento.Email = value;} }
-        public DateTime DataAgendamento { get{return Agendamento.DataAgendamento;} set{Agendamento.DataAgendamento = value;} }
-        public TimeSpan HoraAgendamento { get{return Agendamento.HoraAgendamento;} set{Agendamento.HoraAgendamento = value;} }
-
         public AgendamentoView(Veiculo veiculo)
         {
-            Agendamento = new Agendamento{Veiculo = veiculo};
-            DataAgendamento = DateTime.Today;
+            ViewModel = new AgendamentoViewModel(veiculo);
             InitializeComponent();
 
-            BindingContext = this;
+            BindingContext = ViewModel;
         }
 
         private void Button_OnClicked(object sender, EventArgs e)
         {
-            DisplayAlert("Agendamento", 
+            DisplayAlert("Agendamento",
                 $@"
-Veiculo: {Veiculo.Nome}
-Nome: {Nome}
-Fone: {Fone}
-E-mail: {Email}
-Data Agendamento: {DataAgendamento:dd/MM/yyyy}
-Hora Agendamento: {HoraAgendamento}"
+Veiculo: {ViewModel.Veiculo.Nome}
+Nome: {ViewModel.Nome}
+Fone: {ViewModel.Fone}
+E-mail: {ViewModel.Email}
+Data Agendamento: {ViewModel.DataAgendamento:dd/MM/yyyy}
+Hora Agendamento: {ViewModel.HoraAgendamento}"
                 , "Ok");
         }
     }
