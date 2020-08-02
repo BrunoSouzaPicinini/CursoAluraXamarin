@@ -17,7 +17,7 @@ namespace TestDrive.ViewModels
         public AgendamentoViewModel(Veiculo veiculo)
         {
             Agendamento = new Agendamento{Veiculo = veiculo};
-            DataAgendamento = DateTime.Today;
+            Agendamento.DataAgendamento = DateTime.Today;
             Agendamento.Veiculo = veiculo;
         }
     }

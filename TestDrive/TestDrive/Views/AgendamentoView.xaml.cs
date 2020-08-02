@@ -27,12 +27,12 @@ namespace TestDrive.Views
         {
             DisplayAlert("Agendamento",
                 $@"
-Veiculo: {ViewModel.Veiculo.Nome}
-Nome: {ViewModel.Nome}
-Fone: {ViewModel.Fone}
-E-mail: {ViewModel.Email}
-Data Agendamento: {ViewModel.DataAgendamento:dd/MM/yyyy}
-Hora Agendamento: {ViewModel.HoraAgendamento}"
+Veiculo: {ViewModel.Agendamento.Veiculo.Nome}
+Nome: {ViewModel.Agendamento.Nome}
+Fone: {ViewModel.Agendamento.Fone}
+E-mail: {ViewModel.Agendamento.Email}
+Data Agendamento: {ViewModel.Agendamento.DataAgendamento:dd/MM/yyyy}
+Hora Agendamento: {ViewModel.Agendamento.HoraAgendamento}"
                 , "Ok");
         }
     }
