@@ -22,6 +22,7 @@ namespace TestDrive.ViewModels
         {
             Agendamento = new Agendamento{Veiculo = veiculo};
             Agendamento.DataAgendamento = DateTime.Today;
+            Agendamento.HoraAgendamento = TimeSpan.FromHours(12);
             Agendamento.Veiculo = veiculo;
             
             AgendarCommand = new Command(() =>

@@ -26,16 +26,22 @@ namespace TestDrive.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", (msg) =>
+            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento", async (msg) =>
             {
-                DisplayAlert("Agendamento",
+                var confirmacao = await DisplayAlert("Salvar agendamento",
+                    "Deseja mesmo enviar o agendamento?", "Sim", "Não");
+
+                if (!confirmacao)
+                    return;
+                
+                DisplayAlert("Agendamento realizado",
                 $@"
 Veiculo: {ViewModel.Agendamento.Veiculo.Nome}
 Nome: {ViewModel.Agendamento.Nome}
 Fone: {ViewModel.Agendamento.Fone}
 E-mail: {ViewModel.Agendamento.Email}
 Data Agendamento: {ViewModel.Agendamento.DataAgendamento:dd/MM/yyyy}
-Hora Agendamento: {ViewModel.Agendamento.HoraAgendamento}"
+Hora Agendamento: {ViewModel.Agendamento.HoraAgendamento:g}"
                 , "Ok");    
             });
         }

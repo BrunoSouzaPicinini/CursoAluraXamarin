@@ -1,13 +1,11 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TestDrive.Models;
 using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
-    public class DetalheViewModel : INotifyPropertyChanged
-    {    
+    public class DetalheViewModel : BaseViewModel
+    {
         public Veiculo Veiculo { get; set; }
 
         public string TextoFreioAbs => $"Freio ABS - R$ {Veiculo.FREIO_ABS}";
@@ -50,20 +48,10 @@ namespace TestDrive.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public DetalheViewModel(Veiculo veiculo)
         {
             Veiculo = veiculo;
-            ProximoCommand = new Command(() =>
-            {
-                MessagingCenter.Send(veiculo, "Proximo");
-            });
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ProximoCommand = new Command(() => { MessagingCenter.Send(veiculo, "Proximo"); });
         }
     }
 }

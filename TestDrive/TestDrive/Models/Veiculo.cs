@@ -1,4 +1,6 @@
-﻿namespace TestDrive.Models
+﻿using Newtonsoft.Json;
+
+namespace TestDrive.Models
 {
     public class Veiculo
     {
@@ -6,7 +8,9 @@
         public const int AR_CONDICIONADO = 1000;
         public const int MP3_PLAYER = 500;
 
+        [JsonProperty("nome")]
         public string Nome { get; set; }
+        [JsonProperty("preco")]
         public decimal Preco { get; set; }
         public bool TemFreioAbs { get; set; }
         public bool TemArCondicionado { get; set; }
